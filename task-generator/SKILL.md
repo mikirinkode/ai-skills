@@ -1,9 +1,9 @@
 ---
 name: task-generator
-description: Generate structured engineering task briefs in JSON format for developers. Use this skill whenever the user wants to create a dev task, write a ticket, generate a task brief, define a bug report, write a feature request, or produce any kind of engineering task specification. Also trigger when the user mentions task_key, task briefs, sprint tasks, Jira-style tickets, or wants to turn product requirements into developer-ready work items. This skill outputs valid JSON following a strict schema — no markdown, no explanation, just the JSON object. Supports v4.4 with multi-API endpoint specifications.
+description: Generate structured engineering task briefs in JSON format for developers. Use this skill whenever the user wants to create a dev task, write a ticket, generate a task brief, define a bug report, write a feature request, or produce any kind of engineering task specification. Also trigger when the user mentions task_key, task briefs, sprint tasks, Jira-style tickets, or wants to turn product requirements into developer-ready work items. This skill outputs valid JSON following a strict schema — no markdown, no explanation, just the JSON object. Supports v4.5 with multi-API endpoint specifications and placeholder rule for unspecified technical details.
 ---
 
-# Task Generator (v4.4)
+# Task Generator (v4.5)
 
 Generate structured, developer-ready engineering task briefs as JSON.
 
@@ -25,6 +25,48 @@ Avoid filler text. Never repeat information across sections.
 4. Output **only** valid JSON — no markdown, no explanation, no text before or after
 
 For detailed reference on project codes, platform codes, modules, JSON schemas, and API rules, read `references/schema-and-codes.md` in this skill's directory.
+
+## No Guessing — Placeholder Rule (Critical)
+
+This is the most important behavioral rule in this skill.
+
+**Never invent, assume, or fill in technical details that the user did not explicitly provide.** This includes: model names, field names, database column names, endpoint paths, response field names, response examples, parameter names, enum values, status names, table names, and any system-specific terminology.
+
+If the user did not specify it, do not make it up. Instead, insert a clearly visible placeholder so the user can fill it in.
+
+**Placeholder format:** `"<<DESCRIPTION>>"`
+
+Examples of correct placeholder usage:
+
+```json
+"endpoint": "<<CONFIRM ENDPOINT PATH>>",
+"parameters": [
+  { "name": "<<PARAM_NAME>>", "type": "string", "required": true, "description": "<<DESCRIBE PARAM>>" }
+],
+"response_sample": {
+  "<<FIELD_NAME>>": "<<FIELD_TYPE_AND_PURPOSE>>"
+}
+```
+
+**What you CAN generate freely** (no placeholder needed):
+- Task structure and formatting
+- Wording of objectives, action items, DoD items, test scenario descriptions
+- Severity/priority/risk classification based on context
+- General system behavior descriptions ("validate input", "return error if not found")
+
+**What you MUST use placeholders for** (if not explicitly stated by user):
+- Field names, column names, model names
+- Endpoint paths and HTTP methods
+- Request parameter names and types
+- Response field names and example values
+- Status names, enum values
+- Database table or collection names
+- Specific error codes or messages
+- Any reference to existing system internals
+
+The goal: a developer should be able to look at the JSON and instantly see which parts are confirmed specs vs. which parts need PM input. Placeholders make unknowns visible instead of hiding them behind confident-sounding guesses.
+
+---
 
 ## Core Rules
 
