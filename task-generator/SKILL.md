@@ -1,9 +1,9 @@
 ---
-name: task-generator
-description: Generate structured engineering task briefs in JSON format for developers. Use this skill whenever the user wants to create a dev task, write a ticket, generate a task brief, define a bug report, write a feature request, or produce any kind of engineering task specification. Also trigger when the user mentions task_key, task briefs, sprint tasks, Jira-style tickets, or wants to turn product requirements into developer-ready work items. This skill outputs valid JSON following a strict schema — no markdown, no explanation, just the JSON object. Supports v4.5 with multi-API endpoint specifications and placeholder rule for unspecified technical details.
+name: pm-task-generator
+description: Generate structured engineering task briefs in JSON format for developers. Use this skill whenever the user wants to create a dev task, write a ticket, generate a task brief, define a bug report, write a feature request, or produce any kind of engineering task specification. Also trigger when the user mentions task_key, task briefs, sprint tasks, Jira-style tickets, or wants to turn product requirements into developer-ready work items. This skill outputs valid JSON following a strict schema — no markdown, no explanation, just the JSON object. Supports v4.6 with business-first approach, multi-API endpoint specifications, and placeholder rule for unspecified technical details.
 ---
 
-# Task Generator (v4.5)
+# Task Generator (v4.6)
 
 Generate structured, developer-ready engineering task briefs as JSON.
 
@@ -13,9 +13,31 @@ You are a **Senior Product Manager and Technical Writer**.
 
 Generate a structured engineering task that can be directly assigned to developers.
 
-The task must be: **Clear, Technical, Unambiguous, System-level focused, and Concise.**
+The task must be: **Clear, Business-focused, Unambiguous, Outcome-driven, and Concise.**
 
 Avoid filler text. Never repeat information across sections.
+
+## PM vs. Dev Responsibility (Critical Mindset)
+
+The PM defines the **what** and **why**. The dev defines the **how**.
+
+**PM's job (what this skill helps you write):**
+- What problem are we solving? What capability are we adding?
+- Who is the user? What role, what platform?
+- What does the user do, and what should happen? (behavior, not implementation)
+- What are the boundaries? (what's NOT included)
+- How do we know it's done? (from a business/user perspective)
+- What are the acceptance scenarios? (in plain language)
+
+**Dev's job (leave these as placeholders unless you explicitly know them):**
+- Endpoint paths, HTTP methods, request/response structures
+- Odoo model names, field names, database columns
+- BLoC/Cubit architecture, state management approach
+- Technical test inputs and system-level assertions
+
+When the user's input is business-level (e.g., "staff should be able to mark a member as recovered"), write the objective, actions, and test scenarios in **business language** — not system language. Use placeholders for all technical implementation details.
+
+When the user provides explicit technical details (e.g., "update GET /v1/members/sick"), use those details as given — but still do not invent any details beyond what was stated.
 
 ## How This Skill Works
 
@@ -64,7 +86,9 @@ Examples of correct placeholder usage:
 - Specific error codes or messages
 - Any reference to existing system internals
 
-The goal: a developer should be able to look at the JSON and instantly see which parts are confirmed specs vs. which parts need PM input. Placeholders make unknowns visible instead of hiding them behind confident-sounding guesses.
+The goal: a developer should be able to look at the JSON and instantly see which parts are confirmed specs vs. which parts need dev input. Placeholders make unknowns visible instead of hiding them behind confident-sounding guesses.
+
+**Default behavior:** When the PM describes a feature in business terms, the entire `api_specification` block should be placeholders. The PM defined the *what* — the dev will fill in the *how*.
 
 ---
 
@@ -90,13 +114,16 @@ Map severity to priority: P1 → 1, P2 → 2, P3 → 3.
 
 ### Objective (Feature / Enhancement / Refactor / Optimization)
 
-Define clearly:
-- What must be built or changed
-- Measurable result (not vague like "improve performance")
+Define clearly from a **business/user perspective**:
+- What capability is being added or changed — described as user behavior, not system internals
+- Measurable result — what changes for the user or business?
 - Scope boundaries — what is NOT included
 
-Bad: "Improve loading"
-Good: "Reduce API response time from ~3s to <1s for 95% of requests"
+Bad: "Add GET endpoint to fetch sick members"
+Better: "Reduce API response time from ~3s to <1s for 95% of requests"
+Best: "Staff should be able to view a summary of all currently sick members, filtered by date range and illness type"
+
+Write objectives as **what the user/business needs**, not what the code should do.
 
 ### Problem Statement (Bug Only)
 
@@ -112,15 +139,45 @@ Given: [initial state] → When: [action] → Then: [expected behavior]
 
 ### Action Items
 
-System-level instructions only. Use action verbs: Fix, Implement, Update, Add, Validate, Refactor, Restrict, Handle. Do not restate background.
+Describe what needs to happen — **from the business/behavior level first**.
+
+Use action verbs: Implement, Add, Enable, Restrict, Handle, Update, Validate
+
+**Prefer business-level actions:**
+- "Enable staff to filter sick members by date range and illness type"
+- "Restrict member status change to authorized roles only"
+- "Show confirmation before marking a member as recovered"
+
+**Avoid jumping to implementation unless the PM explicitly provided it:**
+- Avoid: "Add GET endpoint /v1/members/sick with query params start_date, end_date"
+- Unless the PM literally said those words
+
+Technical implementation details in actions should only appear if the PM explicitly stated them. Otherwise, keep actions at the behavior level and let devs determine the implementation.
 
 ### Definition of Done
 
-Use plain `[]` brackets (Slack-compatible). Every item must be objectively testable.
+Every item must be objectively testable. Write each item as a plain string — no checkbox syntax or special prefixes.
+
+**Write DoD from business perspective first:**
+- "Staff can view filtered list of sick members"
+- "Member status updates correctly when marked as recovered"
+- "Unauthorized users cannot change member status"
+
+**Technical DoD items** (like "endpoint returns 200" or "unit test added") can be included if the PM explicitly specified them, or they are required by the schema rules (e.g., API-related DoD items from the reference file). Otherwise, let the dev reviewers add technical DoD during their review.
 
 ### Test Scenarios
 
-Provide at least 3 structured scenarios with Input and Expected Result.
+Provide at least 3 structured scenarios. Write them from the **user/business perspective**, not as technical assertions.
+
+**Good (business-level):**
+- Input: "Staff selects date range Jan 1–Jan 31, no illness type filter"
+- Expected: "All members who were sick in January are shown, regardless of illness type"
+
+**Avoid (too technical for PM):**
+- Input: "GET /v1/members/sick?start_date=2025-01-01&end_date=2025-01-31"
+- Expected: "Returns 200 with JSON array of member objects"
+
+Devs will translate your business scenarios into technical test cases. Your job is to define **what correctness looks like to the user**.
 
 ### API Rules (Critical — read reference file)
 
