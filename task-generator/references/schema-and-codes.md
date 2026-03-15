@@ -1,4 +1,4 @@
-# Schema & Codes Reference (v4.5)
+# Schema & Codes Reference (v4.6)
 
 ## Table of Contents
 1. Project Codes
@@ -21,7 +21,7 @@
 | SSI | SSI |
 | Panti Werdha (PSTW Jombang Asrama Pare) | PJP |
 
-Allowed `project` values: RUKUN, Panti Werdha, Atedia, RSUD, SSI
+Allowed `project` values: RKN, PJP, ATD, RSU, SSI, RMK
 
 ---
 
@@ -88,10 +88,10 @@ Use only these predefined values. Field is optional.
 
 ### New API endpoint — additional DoD items
 ```
-[] Endpoint implemented and accessible
-[] Params validated
-[] Response structure matches defined contract
-[] Endpoint added to API list documentation
+Endpoint implemented and accessible
+Params validated
+Response structure matches defined contract
+Endpoint added to API list documentation
 ```
 Documentation link: https://ww.slack.com/docs/T024FGN56/F09KZGPFXPT
 
@@ -103,11 +103,11 @@ Documentation link: https://ww.slack.com/docs/T024FGN56/F09KZGPFXPT
 
 ### Updated API endpoint — additional DoD items
 ```
-[] Existing response fields unchanged
-[] No field removed or renamed
-[] New fields (if any) are optional
-[] Mobile app compatibility validated
-[] Endpoint updated in API list documentation
+Existing response fields unchanged
+No field removed or renamed
+New fields (if any) are optional
+Mobile app compatibility validated
+Endpoint updated in API list documentation
 ```
 
 ---
