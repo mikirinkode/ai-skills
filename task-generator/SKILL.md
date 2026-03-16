@@ -125,6 +125,19 @@ Best: "Staff should be able to view a summary of all currently sick members, fil
 
 Write objectives as **what the user/business needs**, not what the code should do.
 
+### Scope (Feature / Enhancement / Refactor / Optimization only)
+
+Define the boundaries of the task explicitly:
+
+- **`in_scope`** — list each capability, screen, or behavior that IS part of this task
+- **`out_of_scope`** — list anything related but intentionally excluded, with a brief reason (e.g., "handled in a separate task")
+
+Keep items short and specific. Write from the user/feature perspective, not implementation.
+
+Example out_of_scope item: `"Alert to clinical staff when score ≥ 5 — separate task"`
+
+This field is **required** for Feature, Enhancement, Refactor, and Optimization types. Omit for Bug.
+
 ### Problem Statement (Bug Only)
 
 - **Actual Behavior** — observable, reproducible, testable
@@ -204,6 +217,7 @@ For full API rules including new vs. updated endpoint requirements, backward com
   "comment": {
     "classification": { "severity", "ai_risk_level", "ai_risk_note" },
     "objective",
+    "scope": { "in_scope": [], "out_of_scope": [] },
     "api_specification": [{ "label", "method", "endpoint", "parameters", "response_sample" }],
     "action": [],
     "dod": [],
