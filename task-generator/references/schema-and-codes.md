@@ -39,8 +39,9 @@ Allowed `project` values: RKN, PJP, ATD, RSU, SSI, RMK
 | Doctor | DOC |
 | PhotoFrame | PFR |
 | Email | EML |
+| Senior App | SNR |
 
-Allowed `platform` values: API, WEB, Staff Tablet, NOK, Volunteer, Doctor, PhotoFrame, Staff Mobile, Email, Staff Field
+Allowed `platform` values: API, WEB, TAB, NOK, VOL, DOC, PFR, MOB, EML, FLD, SNR
 
 ---
 
@@ -134,6 +135,10 @@ Endpoint updated in API list documentation
       "ai_risk_note": ""
     },
     "objective": "",
+    "scope": {
+      "in_scope": [],
+      "out_of_scope": []
+    },
     "api_specification": [
       {
         "label": "",
