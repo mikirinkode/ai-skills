@@ -173,7 +173,7 @@ Every item must be objectively testable. Write each item as a plain string — n
 
 **The right question to ask:** What are the 5–7 meaningful outcomes that prove this feature works for the user? That is what DoD should capture — not implementation steps, not sub-tasks, not technical internals.
 
-**Hard limit: maximum 10 DoD items.** If you consistently hit the cap, that is a signal the task is too large and should be split — not a reason to raise the limit. A DoD with more than 10 items usually means either the task covers too much scope, or the PM is writing dev implementation steps instead of user-facing outcomes.
+**Hard limit: maximum 10 DoD items. Each item must not exceed 150 characters.** If you consistently hit the cap, that is a signal the task is too large and should be split — not a reason to raise the limit. A DoD with more than 10 items usually means either the task covers too much scope, or the PM is writing dev implementation steps instead of user-facing outcomes.
 
 **Write DoD from business perspective first:**
 - "Staff can view filtered list of sick members"
