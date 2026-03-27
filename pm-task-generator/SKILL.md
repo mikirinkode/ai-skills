@@ -200,6 +200,12 @@ Devs will translate your business scenarios into technical test cases. Your job 
 
 If `platform` includes "API", the JSON **must** include `api_specification` as an **array of objects** (v4.4 change). Each object represents one endpoint. If platform does NOT include API, **omit `api_specification` entirely**.
 
+For updated endpoints, use the two optional audience-specific fields:
+- `backend_changes` — what changed on the Odoo/backend side (for Odoo dev)
+- `contract_changes` — what changed in the API contract the mobile app consumes (for Flutter dev)
+
+Do NOT use `data_source_change` or `logic_change` — these are deprecated as of v4.7.
+
 For full API rules including new vs. updated endpoint requirements, backward compatibility rules, and required DoD items, read `references/schema-and-codes.md`.
 
 ## Output Rules

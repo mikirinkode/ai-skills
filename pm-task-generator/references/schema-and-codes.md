@@ -1,4 +1,4 @@
-# Schema & Codes Reference (v4.6)
+# Schema & Codes Reference (v4.7)
 
 ## Table of Contents
 1. Project Codes
@@ -79,9 +79,17 @@ Use only these predefined values. Field is optional.
 - `parameters` (array) — list of request parameters
 - `response_sample` (object) — example response payload
 
-### Optional fields per item
-- `data_source_change` (string) — describes change in data source for updated endpoints
-- `logic_change` (string) — describes change in business logic for updated endpoints
+### Optional fields per item (updated endpoints only — omit for new endpoints)
+
+- `backend_changes` (string) — **For Odoo dev.** Describes what changed in the backend: business logic, model fields, data source, computation, or validation rules. Written from the backend implementation perspective.
+  - Example: `"Add soap_subjective, soap_objective, soap_assessment, soap_plan fields to medical.care model. All fields are Text type, optional, default empty string."`
+
+- `contract_changes` (string) — **For Flutter dev.** Describes what changed in the API contract that the mobile app must adapt to: new request params, new/changed response fields, removed fields, or behavior changes. Written from the consumer perspective.
+  - Example: `"Response now includes 4 new optional fields: soap_subjective, soap_objective, soap_assessment, soap_plan. All are strings, may return empty string. No existing fields changed or removed."`
+
+**When to include these fields:**
+- New endpoint → omit both (nothing changed, everything is new)
+- Updated endpoint → include whichever are relevant; omit if not applicable to that audience
 
 ### Conditional rules
 - If `platform` includes "API" → `api_specification` is **required**
