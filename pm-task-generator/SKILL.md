@@ -108,20 +108,19 @@ Every task must include `severity` (P1/P2/P3) and `ai_risk_level`:
 
 - **Low** — UI slicing, styling, simple field addition → AI fully allowed
 - **Medium** — Business logic, API changes, DB updates → AI allowed but must be manually reviewed
-- **High** — Auth, financial logic, security, core architecture → AI-assisted coding not allowed
+- **High** — Auth, financial logic, security, core architecture → AI allowed for insights and review only, not for writing code
 
 Map severity to priority: P1 → 1, P2 → 2, P3 → 3.
 
 ### Objective (Feature / Enhancement / Refactor / Optimization)
 
-Define clearly from a **business/user perspective**:
-- What capability is being added or changed — described as user behavior, not system internals
-- Measurable result — what changes for the user or business?
-- Scope boundaries — what is NOT included
+**1–3 sentences max.** State what the user/business needs — no filler, no restating the task name, no implementation detail.
 
-Bad: "Add GET endpoint to fetch sick members"
-Better: "Reduce API response time from ~3s to <1s for 95% of requests"
-Best: "Staff should be able to view a summary of all currently sick members, filtered by date range and illness type"
+- What capability is being added or changed — described as user behavior, not system internals
+- What's the measurable outcome?
+
+❌ "This task aims to provide staff with the ability to view a comprehensive summary of all currently sick members, which can be filtered by date range and illness type to improve operational efficiency."
+✅ "Staff can view and filter the sick member list by date range and illness type."
 
 Write objectives as **what the user/business needs**, not what the code should do.
 
@@ -129,12 +128,24 @@ Write objectives as **what the user/business needs**, not what the code should d
 
 Define the boundaries of the task explicitly:
 
-- **`in_scope`** — list each capability, screen, or behavior that IS part of this task
+- **`in_scope`** — list the **feature areas or capabilities** that ARE part of this task, written as **nouns or noun phrases** (not verbs, not tasks)
 - **`out_of_scope`** — list anything related but intentionally excluded, with a brief reason (e.g., "handled in a separate task")
 
-Keep items short and specific. Write from the user/feature perspective, not implementation.
+**Hard Rule: `in_scope` must NOT duplicate or mirror `action` items.**
+`in_scope` answers *"What does this task cover?"* — it defines the boundary.
+`action` answers *"What does the dev need to build?"* — it defines the work.
+If an `in_scope` item looks like a task or starts with a verb, it belongs in `action`, not here.
 
-Example out_of_scope item: `"Alert to clinical staff when score ≥ 5 — separate task"`
+**`in_scope` framing — always nouns or noun phrases:**
+- ✅ "Sick member list view — Staff Tablet"
+- ✅ "Date range and illness type filter"
+- ✅ "Empty state handling"
+- ❌ "Add filter by date range" ← this is an action, not a scope boundary
+- ❌ "Show member list" ← this is a task, move it to action
+
+Keep items short and specific. Write from the feature/capability perspective, not implementation.
+
+Example out_of_scope item: `"Cross-facility view — separate task"`
 
 This field is **required** for Feature, Enhancement, Refactor, and Optimization types. Omit for Bug.
 
@@ -151,50 +162,43 @@ Use only when the task involves workflow, status changes, or business logic. For
 Given: [initial state] → When: [action] → Then: [expected behavior]
 
 ### Action Items
-
 Describe what needs to happen — **from the business/behavior level first**.
 
-Use action verbs: Implement, Add, Enable, Restrict, Handle, Update, Validate
+Short, direct, behavior-level. Use action verbs: Implement, Add, Enable, Restrict, Handle, Update, Validate.
 
 **Prefer business-level actions:**
-- "Enable staff to filter sick members by date range and illness type"
-- "Restrict member status change to authorized roles only"
-- "Show confirmation before marking a member as recovered"
 
-**Avoid jumping to implementation unless the PM explicitly provided it:**
-- Avoid: "Add GET endpoint /v1/members/sick with query params start_date, end_date"
-- Unless the PM literally said those words
+**Each item = one clear action. No sub-clauses, no explanation.** If you feel the urge to add "so that..." or "in order to..." — cut it.
 
-Technical implementation details in actions should only appear if the PM explicitly stated them. Otherwise, keep actions at the behavior level and let devs determine the implementation.
+✅ "Enable date range and illness type filter on sick member list"
+✅ "Restrict status change to authorized roles only"
+❌ "Enable staff to filter sick members by date range and illness type so that they can quickly identify current cases" ← too long
+
+No implementation details unless explicitly provided by the PM.
 
 ### Definition of Done
 
-Every item must be objectively testable. Write each item as a plain string — no checkbox syntax or special prefixes.
+Each item must be objectively testable. Plain string — no checkbox syntax, no prefixes.
 
-**The right question to ask:** What are the 5–7 meaningful outcomes that prove this feature works for the user? That is what DoD should capture — not implementation steps, not sub-tasks, not technical internals.
+**Ask:** What proves this feature works for the user? Capture outcomes, not steps.
 
-**Hard limit: maximum 10 DoD items. Each item must not exceed 150 characters.** If you consistently hit the cap, that is a signal the task is too large and should be split — not a reason to raise the limit. A DoD with more than 10 items usually means either the task covers too much scope, or the PM is writing dev implementation steps instead of user-facing outcomes.
+**Hard limit: max 10 items, max 100 characters each.** Cut filler words — never explain the item inside the item itself.
 
 **Write DoD from business perspective first:**
-- "Staff can view filtered list of sick members"
-- "Member status updates correctly when marked as recovered"
-- "Unauthorized users cannot change member status"
+✅ "Staff can filter sick member list by date range"
+✅ "Unauthorized users cannot change member status"
+❌ "The system should allow staff to be able to view the filtered list of sick members on the tablet" ← too long
 
-**Technical DoD items** (like "endpoint returns 200" or "unit test added") can be included if the PM explicitly specified them, or they are required by the schema rules (e.g., API-related DoD items from the reference file). Otherwise, let the dev reviewers add technical DoD during their review.
+Technical DoD (e.g. "Endpoint returns 200") only if explicitly specified by PM or required by API schema rules.
 
 ### Test Scenarios
 
-Provide at least 3 structured scenarios. Write them from the **user/business perspective**, not as technical assertions.
+Minimum 3, maximum 5 scenarios. Business/user perspective — not technical assertions. Keep `input` and `expected` short and direct.
 
-**Good (business-level):**
-- Input: "Staff selects date range Jan 1–Jan 31, no illness type filter"
-- Expected: "All members who were sick in January are shown, regardless of illness type"
+✅ Input: "Staff selects Jan 1–Jan 31, no illness type filter" / Expected: "All sick members in January shown"
+❌ Input: "GET /v1/members/sick?start_date=2025-01-01" / Expected: "Returns 200 with JSON array" ← too technical
 
-**Avoid (too technical for PM):**
-- Input: "GET /v1/members/sick?start_date=2025-01-01&end_date=2025-01-31"
-- Expected: "Returns 200 with JSON array of member objects"
-
-Devs will translate your business scenarios into technical test cases. Your job is to define **what correctness looks like to the user**.
+Your job: define what correctness looks like to the user. Devs write the technical tests.
 
 ### API Rules (Critical — read reference file)
 
