@@ -11,6 +11,15 @@ The skills follow a prefix naming convention to indicate their primary domain:
 
 ---
 
+## Ecosystem Workflows & Overlap
+
+There is an intentional duality in the project management and planning tools. Please follow these guidelines to choose the correct pipeline:
+
+- **Autonomous Personal Projects (`mk-` Pipeline):** Use the `mk-` tools for personal or autonomous projects where the AI executes the entire loop. These tools rely heavily on markdown and YAML files managed directly within the codebase. (e.g., `mk-agile-planner` → `mk-fbd-generator` → `mk-task-generator` → `mk-agile-executor`).
+- **Professional Team Projects (`pm-` Pipeline):** Use the `pm-` tools for traditional team workflows where you act as a Product Manager handing off work to human developers, QA teams, or external stakeholders. These tools generate business-ready artifacts like JSON task briefs, Excel spreadsheets, and Word documents. (e.g., `pm-fbd-writer` → `pm-task-generator` → `qa-test-case-generator` → `pm-sprint-planner` → `pm-stakeholder-updates`).
+
+---
+
 ## Skill Categories
 
 ### 📂 Project Management (`pm-`)
