@@ -30,7 +30,7 @@ Step 0: Bootstrap   → Detect new vs existing project
 Step 1: Context     → Find next IDs, read memory
 Step 2: Epic        → Generate EPIC-XXX.md
 Step 3: Features    → Generate FEAT-XXX.yaml files
-Step 4: Tasks       → Generate TASK-XXX.yaml files
+Step 4: Tasks       → Generate TASK-XXX.yaml files (For large projects, dispatch parallel subagents)
 Step 5: Index       → Update _epic-index.yaml
 Step 6: STOP        → Present summary, wait for human review
 ```
@@ -122,6 +122,12 @@ Check if the project exists in `MikirinKode/projects/_registry.yaml`.
 
 1. Use `MikirinKode/templates/task-template.yaml` as the base template.
 2. For each Feature, break acceptance criteria into 2-5 concrete tasks.
+
+**CRITICAL CONTEXT MANAGEMENT:**
+Generating dozens of tasks at once will severely bloat your context window and degrade output quality.
+- For 1-3 features: Generate tasks sequentially in this session.
+- For >3 features: **YOU MUST SPAWN PARALLEL SUBAGENTS** (using `obra-dispatching-parallel-agents` or your available subagent tools). Dispatch one subagent per feature to execute the `mk-task-generator` logic (generating TASK-XXX.yaml files). Wait for all subagents to finish before proceeding to Step 5.
+
 3. Each task must be 1-4 hours of work.
 4. **CRITICAL ORDER**: Tasks must be in logical dependency order:
    - Setup/scaffolding tasks FIRST (project creation, dependencies)
