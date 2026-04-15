@@ -64,7 +64,7 @@ Use only these predefined values. Field is optional.
 
 ```json
 {
-  "label": "GET /v1/incidents/summary — New Endpoint",
+  "label": "Get Incidents Summary",
   "method": "GET",
   "endpoint": "/v1/incidents/summary",
   "parameters": [],
@@ -73,7 +73,7 @@ Use only these predefined values. Field is optional.
 ```
 
 ### Required fields per item
-- `label` (string) — short identifier, e.g. "GET /v2/member/sick — Updated"
+- `label` (string) — A clear, human-readable sentence/phrase of what the endpoint does (e.g., "Register Senior to Activity" or "Get Incidents Summary"). Do NOT use verbose formats like "POST /endpoint — Updated".
 - `method` (string) — GET, POST, PUT, PATCH, DELETE
 - `endpoint` (string) — full endpoint path
 - `parameters` (array) — list of request parameters

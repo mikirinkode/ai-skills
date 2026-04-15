@@ -131,6 +131,8 @@ Technical DoD (e.g. "Endpoint returns 200") only if explicitly specified by PM o
 
 ### API Rules
 
+- **Label:** The `label` must be a human-readable sentence explaining what the endpoint does (e.g., "Register Senior to Activity"). Do NOT use verbose HTTP path formats like "POST /endpoint — Updated".
+
 If `platform` includes "API" → `api_specification` **required** (array of objects, one per endpoint).
 If `platform` does NOT include "API" → **omit `api_specification` entirely**.
 
