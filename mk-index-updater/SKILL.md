@@ -11,200 +11,29 @@ Auto-generate and update epic/feature/task index files for dashboard consumption
 
 ## Your Role
 
-You are a **Data Aggregator** scanning the project management system and generating summary indices. This skill ensures the dashboard always has up-to-date, aggregated data without scanning hundreds of files on every page load.
+You are a **Data Aggregator** ensuring the dashboard has up-to-date data. Previously, you manually scanned thousands of files in your context window. Now, you trigger a high-performance NodeJS compiler script.
 
-## What is the Index?
+## The Index Script
 
-The Index is:
-- **A summary file**: Aggregated data from all epics/features/tasks
-- **Dashboard-ready**: Structured for easy consumption by web UI
-- **Auto-generated**: Created and updated by AI, never edited manually
-- **Performance optimization**: Prevents file system scanning on every request
+To update the `_epic-index.yaml` safely, reliably, and instantly without hallucinating YAML spacing, you must run the following terminal command from the MikirinKode directory:
 
-The Index is NOT:
-- Source of truth (source is individual epic/feature/task files)
-- Editable by humans (AI regenerates it)
-- Permanent (can be fully regenerated from source files)
-
-## How This Skill Works
-
-1. **Scan projects**: Read all projects/[id]/ directories
-2. **Collect epics**: Parse all epics/EPIC-XXX.md files
-3. **Collect features**: Parse all features/FEAT-XXX.yaml files
-4. **Collect tasks**: Parse all tasks/TASK-XXX.yaml files
-5. **Calculate progress**: Aggregate status and completion percentages
-6. **Generate index**: Create _epic-index.yaml with summary
-7. **Save**: Write to projects/_epic-index.yaml
-
-## Index File Structure
-
-```yaml
-version: "1.0"
-generated_at: YYYY-MM-DD HH:MM:SS
-
-# Global Statistics
-total_projects: 12
-total_epics: 45
-total_features: 128
-total_tasks: 356
-
-# By Status
-epics_by_status:
-  draft: 10
-  approved: 15
-  in_progress: 12
-  completed: 8
-
-features_by_status:
-  todo: 80
-  in_progress: 30
-  done: 18
-
-tasks_by_status:
-  todo: 200
-  in_progress: 50
-  done: 106
-
-# Project Details
-projects:
-  - project_id: trackthisjob-companion
-    project_name: "TrackThisJob Companion"
-    stats:
-      epic_count: 3
-      completed_epics: 1
-      in_progress_epics: 1
-      draft_epics: 1
-      total_features: 8
-      done_features: 3
-      total_tasks: 24
-      done_tasks: 12
-      overall_progress: 50%
-    
-    epics:
-      - epic_id: EPIC-001
-        name: "Product List Feature"
-        status: in_progress
-        progress: 35%
-        features_count: 4
-        features_done: 1
-        tasks_count: 12
-        tasks_done: 4
-        created: 2026-04-11
-        updated: 2026-04-12
-
-# Recent Activity
-recently_updated:
-  - epic_id: EPIC-001
-    project_id: trackthisjob-companion
-    name: "Product List Feature"
-    updated: 2026-04-12 14:30
-    change: "Added 2 new tasks"
+```bash
+cd /Users/macbook/MikirinKode/dashboard && node ./scripts/update-index.js
 ```
 
-## Progress Calculation Logic
-
-### Task Progress
-```
-IF status == 'done' → 100%
-ELSE IF status == 'in_progress' → 50% (or manual value)
-ELSE → 0%
-```
-
-### Feature Progress
-```
-Feature Progress = (Done Tasks / Total Tasks) × 100
-
-Where:
-- Done Tasks = count of linked tasks with status = 'done'
-- Total Tasks = count of all linked tasks
-```
-
-### Epic Progress
-```
-Epic Progress = (Done Features / Total Features) × 100
-
-Where:
-- Done Features = count of linked features with status = 'done'
-- Total Features = count of all linked features
-```
-
-### Project Progress
-```
-Project Progress = Weighted average of all epic progress
-
-Where:
-- Weighted by epic priority (Must = 3x, Should = 2x, Could = 1x)
-- Or simple average if no priorities
-```
-
-## When to Update
-
-The index should be updated when:
-
-### Automatic Triggers
-- After epic creation (mk-epic-generator)
-- After feature creation (mk-fbd-generator)
-- After task creation (mk-task-generator)
-- After status change (manual AI update)
-
-### Periodic Updates
-- Every 24 hours (cron-like, if system supports)
-- Before dashboard deployment
-- On demand: "Update PM index"
-
-## Output Rules
-
-- Output exactly **one .yaml file**
-- Save to: `projects/_epic-index.yaml`
-- Use epic-index-template.yaml as base
-- Include all projects from _registry.yaml
-- Calculate all statistics accurately
-- Use current timestamp in generated_at
-- Never include sensitive data (paths, configs)
+*(Note: Depending on the user's terminal setup, they might need `nvm use` or `npm run` depending on how they alias node).*
 
 ## Implementation Steps
 
-### Step 1: Read Registry
-```
-Read: projects/_registry.yaml
-Extract: All project IDs
-```
+### Step 1: Run Script
+Simply propose the command above. That's it!
 
-### Step 2: Scan Each Project
-For each project_id:
-```
-Read: projects/[project_id]/epics/*.md
-Read: projects/[project_id]/features/*.yaml
-Read: projects/[project_id]/tasks/*.yaml
-```
+### Step 2: Confirm Output
+Wait for the terminal output which should look like:
+`✅ Successfully compiled 12 projects with X total tasks.`
 
-### Step 3: Parse Files
-For each file found:
-```
-Parse metadata (id, name, status, progress)
-Extract relationships (epic_id → features → tasks)
-Calculate derived values (counts, percentages)
-```
-
-### Step 4: Aggregate Statistics
-```
-Sum counts per status
-Calculate percentages
-Build project summaries
-```
-
-### Step 5: Generate YAML
-```
-Write structured data
-Format with proper indentation
-Include timestamp
-```
-
-### Step 6: Save
-```
-Write to: projects/_epic-index.yaml
-Verify: File is valid YAML
-```
+### Step 3: Present
+Say: "I have successfully run the index compiler and updated `projects/_epic-index.yaml`."
 
 ## Performance Considerations
 

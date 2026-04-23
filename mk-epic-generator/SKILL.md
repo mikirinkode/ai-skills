@@ -82,6 +82,8 @@ Generated epics follow this structure:
 
 **epic_id**: EPIC-XXX
 **project**: [project-id]
+# ⚠️ Epic status MUST be exactly: draft | approved | in_progress | completed
+# ❌ NEVER use: done, finished, closed (those are for Features/Tasks)
 **status**: draft
 **progress**: 0%
 **created**: YYYY-MM-DD
@@ -129,6 +131,10 @@ draft → approved → in_progress → completed
 - **approved**: Human approved, ready to break down into features
 - **in_progress**: Features being implemented
 - **completed**: All features done
+
+⚠️ **CRITICAL**: Epic status MUST be exactly one of: `draft`, `approved`, `in_progress`, `completed`
+- ❌ NEVER use `done` for epics (that's for Features/Tasks only)
+- ❌ NEVER use `finished`, `closed`, `resolved`
 
 ## Progress Calculation
 

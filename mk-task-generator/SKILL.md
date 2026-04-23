@@ -263,6 +263,10 @@ todo → in_progress → done
 - **in_progress**: Currently being worked on
 - **done**: Completed and verified
 
+⚠️ **CRITICAL**: Task status MUST be exactly one of: `todo`, `in_progress`, `done`
+- ❌ NEVER use `completed` for tasks (that's for Epics only)
+- ❌ NEVER use `finished`, `closed`, `resolved`
+
 ## Progress Calculation
 
 ```

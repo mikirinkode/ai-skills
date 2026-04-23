@@ -95,6 +95,8 @@ platform: web | mobile | both
 module: "[module-name]"
 priority: must | should | could | wont
 
+# ⚠️ Status MUST be exactly: todo | in_progress | done
+# ❌ NEVER use: completed, finished, closed, resolved
 status: todo
 progress: 0
 
