@@ -227,6 +227,6 @@ mk-index-updater
 
 ## Template Reference
 
-Base template: `MikirinKode/templates/epic-template.md`
+Base template: `templates/epic-template.md`
 
 Always use this as starting point and customize based on requirements.

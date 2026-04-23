@@ -98,7 +98,7 @@ Check if the project exists in `MikirinKode/projects/_registry.yaml`.
 
 ### Step 2: Generate Epic
 
-1. Use `MikirinKode/templates/epic-template.md` as the base template.
+1. Use `templates/epic-template.md` as the base template.
 2. Fill in all sections: Overview, Goals, User Flow, Architecture, Implementation Phases.
 3. Set `status: draft`.
 4. Set `progress: 0%`.
@@ -108,7 +108,7 @@ Check if the project exists in `MikirinKode/projects/_registry.yaml`.
 
 ### Step 3: Generate Features
 
-1. Use `MikirinKode/templates/feature-template.yaml` as the base template.
+1. Use `templates/feature-template.yaml` as the base template.
 2. Extract user capabilities from the Epic (each = one Feature).
 3. Name each feature as **Verb + Object** (e.g., "View role list", NOT "Role management").
 4. Assign priorities using MoSCoW (must/should/could/wont).
@@ -120,7 +120,7 @@ Check if the project exists in `MikirinKode/projects/_registry.yaml`.
 
 ### Step 4: Generate Tasks
 
-1. Use `MikirinKode/templates/task-template.yaml` as the base template.
+1. Use `templates/task-template.yaml` as the base template.
 2. For each Feature, break acceptance criteria into 2-5 concrete tasks.
 
 **CRITICAL CONTEXT MANAGEMENT:**

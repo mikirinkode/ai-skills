@@ -167,7 +167,7 @@ mk-index-updater (this skill)
 
 ## Template Reference
 
-Base template: `MikirinKode/templates/epic-index-template.yaml`
+Base template: `templates/epic-index-template.yaml`
 
 Use as starting point, but generated index will have actual data, not placeholders.
 

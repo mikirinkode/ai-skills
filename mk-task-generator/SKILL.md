@@ -318,6 +318,6 @@ mk-index-updater
 
 ## Template Reference
 
-Base template: `MikirinKode/templates/task-template.yaml`
+Base template: `templates/task-template.yaml`
 
 Always use this as starting point and customize based on feature requirements.

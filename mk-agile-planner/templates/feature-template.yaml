@@ -1,0 +1,86 @@
+# Feature Template
+# Save as: projects/[project-id]/features/FEAT-XXX.yaml
+
+feature_id: FEAT-XXX
+epic_id: EPIC-XXX
+project_id: [project-id]
+
+# Basic Info
+name: "[Feature name in verb + object format]"
+description: "One-line description of what this feature does"
+
+# Classification
+platform: web          # web | mobile | both
+module: "[module-name]" # e.g., product, auth, profile
+priority: should        # must | should | could | wont
+
+# Status Tracking
+# ⚠️ MUST be exactly: todo | in_progress | done
+# ❌ NEVER use: completed, finished, closed, resolved
+status: todo
+progress: 0            # 0-100 percentage
+
+# Relationships
+tasks:
+  - TASK-XXX
+  - TASK-XXX
+  - TASK-XXX
+
+dependencies:
+  - FEAT-XXX           # Other features this depends on
+  - EPIC-XXX           # Can reference parent epic
+
+# User Story
+user_story: |
+  As a [user type],
+  I want to [action],
+  So that [benefit]
+
+# Acceptance Criteria
+acceptance_criteria:
+  - "Criterion 1: Specific, measurable requirement"
+  - "Criterion 2: Another requirement"
+  - "Criterion 3: Edge case or boundary condition"
+
+# Technical Notes
+technical_notes: |
+  Any technical details, implementation hints, or architecture notes.
+  Can be multi-line.
+
+# UI/UX
+ui_notes: |
+  Design notes, layout specifications, or interaction details.
+
+# Files
+files_expected:
+  - path/to/file1.dart
+  - path/to/file2.dart
+
+# Testing
+test_requirements:
+  - "Unit test for [function]"
+  - "Widget test for [component]"
+  - "Integration test for [flow]"
+
+# Analytics
+events:
+  - name: "feature_viewed"
+    parameters:
+      - feature_id
+      - user_id
+  - name: "feature_action_completed"
+    parameters:
+      - action_type
+
+# Effort Estimation
+estimated_hours: 4
+actual_hours: 0      # Updated by AI when done
+
+# Metadata
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+created_by: AI
+
+# Notes
+notes: |
+  Additional notes or context about this feature.

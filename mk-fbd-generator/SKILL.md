@@ -263,6 +263,6 @@ mk-index-updater
 
 ## Template Reference
 
-Base template: `MikirinKode/templates/feature-template.yaml`
+Base template: `templates/feature-template.yaml`
 
 Always use this as starting point and customize based on epic requirements.
