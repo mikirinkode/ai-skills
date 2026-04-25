@@ -113,10 +113,10 @@ Apply rules from `references/strict-rules.md`:
    - Set `actual_hours` (estimate based on complexity)
    - Append to `execution_log`:
      ```yaml
-     - timestamp: YYYY-MM-DD HH:MM
-       action: "completed"
-       by: AI
-       notes: "Brief summary of what was done"
+      - timestamp: YYYY-MM-DDThh:mm:ssZ
+        action: "completed"
+        by: AI
+        notes: "Brief summary of what was done"
      ```
 2. Update the parent `FEAT-XXX.yaml`:
    - Recalculate `progress` based on done tasks / total tasks

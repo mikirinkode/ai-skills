@@ -86,8 +86,8 @@ Generated epics follow this structure:
 # ❌ NEVER use: done, finished, closed (those are for Features/Tasks)
 **status**: draft
 **progress**: 0%
-**created**: YYYY-MM-DD
-**updated**: YYYY-MM-DD
+**created**: YYYY-MM-DDThh:mm:ssZ
+**updated**: YYYY-MM-DDThh:mm:ssZ
 
 ## Overview
 [Description, goals, user flow]

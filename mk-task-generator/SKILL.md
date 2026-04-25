@@ -127,10 +127,13 @@ technical_notes: |
 
 blockers: []
 
-created: YYYY-MM-DD
-updated: YYYY-MM-DD
+created: YYYY-MM-DDThh:mm:ssZ
+updated: YYYY-MM-DDThh:mm:ssZ
 
-execution_log: []
+execution_log:
+  - timestamp: YYYY-MM-DDThh:mm:ssZ
+    action: "created"
+    by: AI
 
 notes: |
   Additional context
