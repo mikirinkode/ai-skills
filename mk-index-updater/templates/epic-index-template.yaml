@@ -3,7 +3,7 @@
 # Do not edit manually - will be overwritten
 
 version: "1.0"
-generated_at: YYYY-MM-DD HH:MM:SS
+generated_at: YYYY-MM-DDThh:mm:ssZ
 
 # Statistics
 total_projects: 0
@@ -29,8 +29,8 @@ projects:
         features_done: 0
         tasks_count: 0
         tasks_done: 0
-        created: YYYY-MM-DD
-        updated: YYYY-MM-DD
+        created: YYYY-MM-DDThh:mm:ssZ
+        updated: YYYY-MM-DDThh:mm:ssZ
         
       - epic_id: EPIC-002
         name: "[Epic name]"
@@ -40,8 +40,8 @@ projects:
         features_done: 1
         tasks_count: 12
         tasks_done: 4
-        created: YYYY-MM-DD
-        updated: YYYY-MM-DD
+        created: YYYY-MM-DDThh:mm:ssZ
+        updated: YYYY-MM-DDThh:mm:ssZ
         
       - epic_id: EPIC-003
         name: "[Epic name]"
@@ -51,8 +51,8 @@ projects:
         features_done: 3
         tasks_count: 8
         tasks_done: 8
-        created: YYYY-MM-DD
-        updated: YYYY-MM-DD
+        created: YYYY-MM-DDThh:mm:ssZ
+        updated: YYYY-MM-DDThh:mm:ssZ
 
   - project_id: [another-project]
     project_name: "[Project Name]"
@@ -84,7 +84,7 @@ recently_updated:
   - epic_id: EPIC-XXX
     project_id: [project-id]
     name: "[Epic name]"
-    updated: YYYY-MM-DD
+    updated: YYYY-MM-DDThh:mm:ssZ
     change: "[Brief description of last change]"
 
 # Notes

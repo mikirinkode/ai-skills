@@ -64,7 +64,7 @@ const index = await loadYaml('projects/_epic-index.yaml');
 
 ```yaml
 version: "1.0"
-generated_at: 2026-04-12 19:45:00
+generated_at: 2026-04-12T19:45:00Z
 
 total_projects: 12
 total_epics: 1
@@ -93,14 +93,14 @@ projects:
         features_done: 0
         tasks_count: 0
         tasks_done: 0
-        created: 2026-04-11
-        updated: 2026-04-12
+        created: 2026-04-11T00:00:00Z
+        updated: 2026-04-12T00:00:00Z
 
 recently_updated:
   - epic_id: EPIC-001
     project_id: trackthisjob-companion
     name: "Product List Feature"
-    updated: 2026-04-12 19:32
+    updated: 2026-04-12T19:32:00Z
     change: "Migrated from plans/ to epics/"
 ```
 

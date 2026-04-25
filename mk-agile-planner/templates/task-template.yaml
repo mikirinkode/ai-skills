@@ -71,19 +71,19 @@ blockers:
     status: ""
 
 # Metadata
-created: YYYY-MM-DD
-updated: YYYY-MM-DD
+created: YYYY-MM-DDThh:mm:ssZ
+updated: YYYY-MM-DDThh:mm:ssZ
 created_by: AI
 
 # Execution Log
 execution_log:
-  - timestamp: YYYY-MM-DD HH:MM
+  - timestamp: YYYY-MM-DDThh:mm:ssZ
     action: "created"
     by: AI
-  - timestamp: YYYY-MM-DD HH:MM
+  - timestamp: YYYY-MM-DDThh:mm:ssZ
     action: "started"
     by: AI
-  - timestamp: YYYY-MM-DD HH:MM
+  - timestamp: YYYY-MM-DDThh:mm:ssZ
     action: "completed"
     by: AI
 

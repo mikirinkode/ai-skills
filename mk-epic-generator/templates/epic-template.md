@@ -4,8 +4,8 @@
 **project**: [project-id]  
 **status**: draft | approved | in_progress | completed  
 **progress**: 0%  
-**created**: YYYY-MM-DD  
-**updated**: YYYY-MM-DD  
+**created**: YYYY-MM-DDThh:mm:ssZ  
+**updated**: YYYY-MM-DDThh:mm:ssZ  
 
 ---
 
@@ -186,5 +186,5 @@ path/to/file2.dart
 
 | Date | Author | Change |
 |------|--------|--------|
-| YYYY-MM-DD | [Name] | [Description of change] |
-| YYYY-MM-DD | [Name] | [Description of change] |
+| YYYY-MM-DDThh:mm:ssZ | [Name] | [Description of change] |
+| YYYY-MM-DDThh:mm:ssZ | [Name] | [Description of change] |

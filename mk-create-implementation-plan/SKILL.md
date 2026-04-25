@@ -92,7 +92,7 @@ Create 8 phases:
 
 ### 5. Write Plan Document
 
-Save to: `MikirinKode/plans/[project-id]/YYYY-MM-DD-[feature]-plan.md`
+Save to: `MikirinKode/plans/[project-id]/YYYY-MM-DDThh:mm:ssZ-[feature]-plan.md`
 
 Template sections:
 - Overview
