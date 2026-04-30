@@ -60,6 +60,18 @@ verification_steps:
 estimated_hours: 2
 actual_hours: 0          # Updated by AI when done
 
+# Execution Log
+execution_log:
+  - timestamp: YYYY-MM-DDThh:mm:ssZ
+    action: "created"
+    by: AI
+  - timestamp: YYYY-MM-DDThh:mm:ssZ
+    action: "started"
+    by: AI
+  - timestamp: YYYY-MM-DDThh:mm:ssZ
+    action: "completed"
+    by: AI
+
 # Technical Notes
 technical_notes: |
   Implementation details, patterns to follow, or technical constraints.
@@ -74,18 +86,6 @@ blockers:
 created: YYYY-MM-DDThh:mm:ssZ
 updated: YYYY-MM-DDThh:mm:ssZ
 created_by: AI
-
-# Execution Log
-execution_log:
-  - timestamp: YYYY-MM-DDThh:mm:ssZ
-    action: "created"
-    by: AI
-  - timestamp: YYYY-MM-DDThh:mm:ssZ
-    action: "started"
-    by: AI
-  - timestamp: YYYY-MM-DDThh:mm:ssZ
-    action: "completed"
-    by: AI
 
 # Notes
 notes: |
